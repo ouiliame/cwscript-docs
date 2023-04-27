@@ -7,10 +7,10 @@
 /* You can override the default Infima variables here. */
 
 @font-face {
-  font-family: 'Berkeley-Mono-Bold';
+  font-family: 'Berkeley-Mono';
   src: url('../../static/webfonts/berkeleymono-bold-webfont.woff2') format('woff2'),
        url('../../static/webfonts/berkeleymono-bold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -18,11 +18,11 @@
 
 
 @font-face {
-  font-family: 'Berkeley-Mono-Bold-Italic';
+  font-family: 'Berkeley-Mono';
   src: url('../../static/webfonts/berkeleymono-bolditalic-webfont.woff2') format('woff2'),
        url('../../static/webfonts/berkeleymono-bolditalic-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: bold;
+  font-style: italic;
 
 }
 
@@ -30,11 +30,11 @@
 
 
 @font-face {
-  font-family: 'Berkeley-Mono-Italic';
+  font-family: 'Berkeley-Mono';
   src: url('../../static/webfonts/berkeleymono-italic-webfont.woff2') format('woff2'),
        url('../../static/webfonts/berkeleymono-italic-webfont.woff') format('woff');
   font-weight: normal;
-  font-style: normal;
+  font-style: italic;
 
 }
 
@@ -47,7 +47,6 @@
        url('../../static/webfonts/berkeleymono-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
 
@@ -59,7 +58,6 @@
        url('../../static/webfonts/proximanova-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
 
@@ -69,45 +67,41 @@
   font-family: 'Proxima-Nova-Black';
   src: url('../../static/webfonts/proxima_nova_black-webfont.woff2') format('woff2'),
        url('../../static/webfonts/proxima_nova_black-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: bolder;
   font-style: normal;
-
 }
 
 
 
 
 @font-face {
-  font-family: 'Proxima-Nova-Bold';
+  font-family: 'Proxima-Nova';
   src: url('../../static/webfonts/proxima_nova_bold-webfont.woff2') format('woff2'),
        url('../../static/webfonts/proxima_nova_bold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
-
 }
 
 
 
 
 @font-face {
-  font-family: 'Proxima-Nova-Extra-Bold';
+  font-family: 'Proxima-Nova';
   src: url('../../static/webfonts/proxima_nova_extrabold-webfont.woff2') format('woff2'),
        url('../../static/webfonts/proxima_nova_extrabold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: bolder;
   font-style: normal;
-
 }
 
 
 
 
 @font-face {
-  font-family: 'Proxima-Nova-Thin';
+  font-family: 'Proxima-Nova';
   src: url('../../static/webfonts/proxima_nova_thin-webfont.woff2') format('woff2'),
        url('../../static/webfonts/proxima_nova_thin-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: lighter;
   font-style: normal;
-
 }
 
 :root {
