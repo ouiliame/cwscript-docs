@@ -1,0 +1,7 @@
+{
+  "label": "Compiler Manual",
+  "link": {
+    "type": "generated-index",
+    "description": "Compiler Tool Reference for `cwsc`",
+  }
+}

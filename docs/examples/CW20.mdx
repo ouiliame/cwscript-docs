@@ -1,0 +1,55 @@
+# CW20
+
+```cwscript showLineNumbers
+interface CW20 {
+
+  struct Coin {
+    address: String,
+    amount: U128
+  }
+
+  event Transfer(from: Address, to: Address, amount: Int)
+  event Burn(from: Address, amount: Int)
+  event Mint(to: Address, amount: Int)
+  event Send(from: Address, to: Address, amount: Int)
+  event IncreaseAllowance(owner: Address, spender: Address, amount: Int)
+  event DecreaseAllowance(owner: Address, spender: Address, amount: Int)
+  event TransferFrom(from: Address, to: Address, by: Address, amount: Int)
+  event BurnFrom(from: Address, by: Address, amount: Int)
+  event Log(from: Address, to: Address, by: Address, amount: Int)
+
+  #instantiate(
+    name: String,
+    symbol: String,
+    decimals: U8,
+    initial_balances: CW20.Coin[],
+    mint?: struct MinterResponse {
+      minter: String,
+      cap?: U128
+    }
+  )
+
+  exec #burn(amount: Int)
+  exec #mint(recipient: String)
+  exec #send(contract: String, amount: Int, msg: Binary)
+  exec #increase_allowance(spender: String, amount: Int, expires?: Expiration)
+  exec #decrease_allowance(spender: String, amount: Int, expires?: Expiration)
+  exec #transfer_from(owner: String, recipient: String, amount: Int)
+  exec #burn_from(owner: String, amount: Int)
+  exec #send_from(owner: String, contract: String, amount: Int, msg: Binary)
+
+  query #balance(address: String) -> struct {
+    balance: Int
+  }
+
+  query #token_info() -> struct TokenInfo {
+    name: String,
+    symbol: String,
+    decimals: U8,
+    total_supply: Int,
+  }
+
+  query #minter() -> MinterResponse?
+
+}
+```

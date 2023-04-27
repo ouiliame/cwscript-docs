@@ -1,0 +1,8 @@
+{
+  "label": "Language Reference",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Reference guide for the CWScript Language",
+  }
+}
