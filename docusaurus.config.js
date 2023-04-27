@@ -3,78 +3,78 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = {
-    plain: {
-      color: "#d1d5da",
-      backgroundColor: "#0d1117",
+  plain: {
+    color: "#d1d5da",
+    backgroundColor: "#0d1117",
+  },
+  styles: [
+    {
+      types: ["comment", "prolog", "doctype", "cdata"],
+      style: {
+        color: "#8b949e",
+        fontStyle: "italic",
+      },
     },
-    styles: [
-      {
-        types: ["comment", "prolog", "doctype", "cdata"],
-        style: {
-          color: "#8b949e",
-          fontStyle: "italic",
-        },
+    {
+      types: ["namespace"],
+      style: {
+        opacity: 0.7,
       },
-      {
-        types: ["namespace"],
-        style: {
-          opacity: 0.7,
-        },
+    },
+    {
+      types: ["string", "attr-value"],
+      style: {
+        color: "#a5d6ff",
       },
-      {
-        types: ["string", "attr-value"],
-        style: {
-          color: "#a5d6ff",
-        },
+    },
+    {
+      types: ["punctuation", "operator"],
+      style: {
+        color: "#d1d5da",
       },
-      {
-        types: ["punctuation", "operator"],
-        style: {
-          color: "#d1d5da",
-        },
+    },
+    {
+      types: [
+        "entity",
+        "url",
+        "symbol",
+        "number",
+        "boolean",
+        "variable",
+        "constant",
+        "property",
+        "regex",
+        "inserted",
+      ],
+      style: {
+        color: "#79c0ff",
       },
-      {
-        types: [
-          "entity",
-          "url",
-          "symbol",
-          "number",
-          "boolean",
-          "variable",
-          "constant",
-          "property",
-          "regex",
-          "inserted",
-        ],
-        style: {
-          color: "#79c0ff",
-        },
+    },
+    {
+      types: ["atrule", "keyword", "attr-name", "selector"],
+      style: {
+        color: "#ffa7c4",
       },
-      {
-        types: ["atrule", "keyword", "attr-name", "selector"],
-        style: {
-          color: "#ffa7c4",
-        },
+    },
+    {
+      types: ["function", "deleted", "tag"],
+      style: {
+        color: "#ff7b72",
       },
-      {
-        types: ["function", "deleted", "tag"],
-        style: {
-          color: "#ff7b72",
-        },
+    },
+    {
+      types: ["function-variable"],
+      style: {
+        color: "#d1d5da",
       },
-      {
-        types: ["function-variable"],
-        style: {
-          color: "#d1d5da",
-        },
+    },
+    {
+      types: ["tag", "selector", "keyword"],
+      style: {
+        color: "#ff7b72",
       },
-      {
-        types: ["tag", "selector", "keyword"],
-        style: {
-          color: "#ff7b72",
-        },
-      },
-    ],
+    },
+  ],
 };
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -149,8 +149,9 @@ const config = {
             label: "Docs",
           },
           { to: "/blog", label: "Blog", position: "left" },
+          { to: "/playground", label: "Playground", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/terran-one/cwscript",
             label: "GitHub",
             position: "right",
           },
