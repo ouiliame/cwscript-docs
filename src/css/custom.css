@@ -7,7 +7,7 @@
 /* You can override the default Infima variables here. */
 
 @font-face {
-  font-family: 'Berkeley-Mono';
+  font-family: 'Berkeley-Mono-Bold';
   src: url('../../static/webfonts/berkeleymono-bold-webfont.woff2') format('woff2'),
        url('../../static/webfonts/berkeleymono-bold-webfont.woff') format('woff');
   font-weight: bold;
@@ -18,7 +18,7 @@
 
 
 @font-face {
-  font-family: 'Berkeley-Mono';
+  font-family: 'Berkeley-Mono-BoldItalic';
   src: url('../../static/webfonts/berkeleymono-bolditalic-webfont.woff2') format('woff2'),
        url('../../static/webfonts/berkeleymono-bolditalic-webfont.woff') format('woff');
   font-weight: bold;
@@ -30,7 +30,7 @@
 
 
 @font-face {
-  font-family: 'Berkeley-Mono';
+  font-family: 'Berkeley-Mono-Italic';
   src: url('../../static/webfonts/berkeleymono-italic-webfont.woff2') format('woff2'),
        url('../../static/webfonts/berkeleymono-italic-webfont.woff') format('woff');
   font-weight: normal;
@@ -75,7 +75,7 @@
 
 
 @font-face {
-  font-family: 'Proxima-Nova';
+  font-family: 'Proxima-Nova-Bold';
   src: url('../../static/webfonts/proxima_nova_bold-webfont.woff2') format('woff2'),
        url('../../static/webfonts/proxima_nova_bold-webfont.woff') format('woff');
   font-weight: bold;
@@ -86,23 +86,21 @@
 
 
 @font-face {
-  font-family: 'Proxima-Nova';
+  font-family: 'Proxima-Nova-ExtraBold';
   src: url('../../static/webfonts/proxima_nova_extrabold-webfont.woff2') format('woff2'),
        url('../../static/webfonts/proxima_nova_extrabold-webfont.woff') format('woff');
   font-weight: bolder;
   font-style: normal;
 }
 
-
-
-
-@font-face {
-  font-family: 'Proxima-Nova';
-  src: url('../../static/webfonts/proxima_nova_thin-webfont.woff2') format('woff2'),
-       url('../../static/webfonts/proxima_nova_thin-webfont.woff') format('woff');
-  font-weight: lighter;
-  font-style: normal;
+[data-theme="light"] .shiki.github-light {
+  display: none;
 }
+
+[data-theme="dark"] .shiki.cwscript-dark {
+  display: none;
+}
+
 
 :root {
     --ifm-color-primary: #ff6600;
@@ -116,6 +114,6 @@
     --ifm-font-family-monospace: 'Berkeley-Mono';
     --ifm-font-size-base: 110%;
 
-  --ifm-code-font-size: 93%;
+  --ifm-code-font-size: 90%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }

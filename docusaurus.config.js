@@ -1,83 +1,90 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
 const lightCodeTheme = require("prism-react-renderer/themes/github");
+// const darkCodeTheme = require("prism-react-renderer/themes/
+
+/** @type {import('prism-react-renderer').PrismTheme} */
 const darkCodeTheme = {
   plain: {
-    color: "#d1d5da",
-    backgroundColor: "#0d1117",
+    color: "#f8f8f2",
+    backgroundColor: "#242424",
   },
   styles: [
     {
-      types: ["comment", "prolog", "doctype", "cdata"],
+      types: ["comment"],
       style: {
-        color: "#8b949e",
+        color: "#606060",
         fontStyle: "italic",
-      },
-    },
-    {
-      types: ["namespace"],
-      style: {
-        opacity: 0.7,
       },
     },
     {
       types: ["string", "attr-value"],
       style: {
-        color: "#a5d6ff",
+        color: "#aaff33",
       },
     },
     {
-      types: ["punctuation", "operator"],
+      types: ["number"],
       style: {
-        color: "#d1d5da",
+        color: "#75ccff",
       },
     },
     {
-      types: [
-        "entity",
-        "url",
-        "symbol",
-        "number",
-        "boolean",
-        "variable",
-        "constant",
-        "property",
-        "regex",
-        "inserted",
-      ],
+      types: ["punctuation"],
       style: {
-        color: "#79c0ff",
+        color: "#aeaeae",
       },
     },
     {
-      types: ["atrule", "keyword", "attr-name", "selector"],
+      types: ["constant"],
       style: {
-        color: "#ffa7c4",
+        color: "#75ccff",
       },
     },
     {
-      types: ["function", "deleted", "tag"],
+      types: ["keyword"],
       style: {
-        color: "#ff7b72",
+        color: "#ff8833",
       },
     },
     {
-      types: ["function-variable"],
+      types: ["operator"],
       style: {
-        color: "#d1d5da",
+        color: "#ffbb22",
       },
     },
     {
-      types: ["tag", "selector", "keyword"],
+      types: ["special-call"],
       style: {
-        color: "#ff7b72",
+        color: "#ff5044",
+        fontWeight: "bold",
+      },
+    },
+    {
+      types: ["property"],
+      style: {
+        color: "#97ccff",
+        fontStyle: "italic",
+      },
+    },
+    {
+      types: ["builtin", "class-name"],
+      style: {
+        color: "#ffef88",
+      },
+    },
+    {
+      types: ["function"],
+      style: {
+        color: "#bf88ef",
       },
     },
   ],
 };
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+const shikiHighlightCws = require("./src/remark/shiki-highlight-cws.js");
+
+// /** @type {import('@docusaurus/types').Config} */
+const config = async () => ({
   title: "CWScript Documentation",
   tagline: "A simpler language for CosmWasm smart contracts",
   favicon: "img/favicon.ico",
@@ -111,6 +118,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          // remarkPlugins: [await shikiHighlightCws()],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -233,12 +241,13 @@ const config = {
 
         copyright: `Copyright © ${new Date().getFullYear()} Terran One LLC.`,
       },
+
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: ["cwscript"],
       },
     }),
-};
+});
 
 module.exports = config;
