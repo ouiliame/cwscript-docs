@@ -1,6 +1,16 @@
 # Contracts
 
-In CWScript, a **contract** describes a CosmWasm smart contract.
+**Contracts** are the primary logical units of a CWScript project, and are defined similarly to classes in object-oriented programming languages.
+
+A contract definition comprises the following sections:
+
+- **state** - variables that are persisted as the contract's state
+- **#instantiate** - logic that defines how the contract is initialized upon instantiation
+- **exec #...** - state-mutating functions that can be called to interact with the contract in a transaction
+- **query #...** - read-only functions that can be called to query the state of the contract
+
+Contracts are also namespaces, so they can contain static definitions for custom types and functions which can be referenced in other code.
+It is common to define custom **errors** and **events** inside a contract.
 
 ## Syntax
 
@@ -9,79 +19,26 @@ contract MyToken // required: contract name
     extends BaseContract // optional: inherited base contract
     implements CW2, CW20 // optional: implemented contract interfaces
 {
-    // ...contract items
+
+  error InsufficientBalance() // optional: custom error type
+
+  event Transfer(sender: Address, recipient: Address, amount: Uint) // optional: custom event type
+
+  state {
+    singleton: Bool // item
+    balances[Address]: Uint = 0 // map
+  }
+
+  #instantiate() {
+    // ...
+  }
+
+  exec #transfer(to: Address, amount: Uint) {
+    // ...
+  }
+
+  query #balance(addr: Address) -> Uint {
+    // ...
+  }
 }
 ```
-
-## Concepts
-
-### State
-
-### Messages
-
-### Inheritance
-
-### Interfaces
-
-A contract may implement one or more interfaces. An interface is a set of required entrypoint messages that a contract must implement. Interfaces are used to provide a common API for contracts that share similar functionality.
-
-For instance, the CW20 interface defines a set of entrypoints that a contract must implement in order to be considered a CW20 token contract. This allows a CW20 token contract to be used in any context that expects a CW20 token contract.
-
-```cwscript
-interface CW20 {
-  // Interfaces may define custom types, but the implementing contract is not
-  // obligated to use them.
-  struct Coin {
-    address: String,
-    amount: U128
-  }
-
-  event Transfer(from: Address, to: Address, amount: Int)
-  event Burn(from: Address, amount: Int)
-  event Mint(to: Address, amount: Int)
-  event Send(from: Address, to: Address, amount: Int)
-  event IncreaseAllowance(owner: Address, spender: Address, amount: Int)
-  event DecreaseAllowance(owner: Address, spender: Address, amount: Int)
-  event TransferFrom(from: Address, to: Address, by: Address, amount: Int)
-  event BurnFrom(from: Address, by: Address, amount: Int)
-  event Log(from: Address, to: Address, by: Address, amount: Int)
-
-  // Interfaces may not define any state items, as this would conflict with
-  // the contract's own state items.
-
-  // Typically, interfaces will not define any #instantiate entrypoints, as
-  // this often conflicts with the contract's own instantiate entrypoint.
-  // However, there are cases where it makes sense to define an #instantiate
-  // structure for an interface, such as when the implementing contract is
-  // expected to be instantiated by a factory contract that expects a specific
-  // structure.
-
-  // Required "exec" entrypoints -- the implementing contract must have all of
-  // these entrypoints, with the exact same signatures matching in message name,
-  // and each parameter's order, name, and type.
-  exec #burn(amount: Int)
-  exec #mint(recipient: String)
-  exec #send(contract: String, amount: Int, msg: Binary)
-  exec #increase_allowance(spender: String, amount: Int, expires?: Expiration)
-  exec #decrease_allowance(spender: String, amount: Int, expires?: Expiration)
-  exec #transfer_from(owner: String, recipient: String, amount: Int)
-  exec #burn_from(owner: String, amount: Int)
-  exec #send_from(owner: String, contract: String, amount: Int, msg: Binary)
-
-  // Required "query" entrypoints -- same rules as "exec" entrypoints.
-  query #balance(address: String) -> struct {
-    balance: Int
-  }
-
-  query #token_info() -> struct TokenInfo {
-    name: String,
-    symbol: String,
-    decimals: U8,
-    total_supply: Int,
-  }
-
-  query #minter() -> MinterResponse?
-
-}
-```
-

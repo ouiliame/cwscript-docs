@@ -1,0 +1,70 @@
+# Functions
+
+In CWScript, **functions** are defined using the `fn` keyword.
+
+```cwscript
+fn function_name(param1: Bool, param2: Int) -> Int {
+    return param1 ? param2 : 0
+}
+```
+
+## Fallible Functions
+
+In CWScript, a *fallible function* is a function that may fail with an error.
+You can only call a fallible function inside other fallible functions or special contract entrypoints.
+
+To define a fallible function, add a `!` to the end of the function name.
+
+:::tip
+You should consider the `!` as part of the function's name -- i.e. `fn foo!` is a different function than `fn foo`.
+:::
+
+```cwscript
+fn parse_number!(s: String) -> Int {
+  // can fail with an error
+}
+```
+
+## Optional Parameters
+
+:::note
+An optional parameter is a parameter of type `T?` with a default value of `None`.
+:::
+
+You can make a parameter optional by adding a `?` to the end of the parameter name.
+
+Optional parameters must come AFTER all required parameters in the function signature.
+By default, optional parameters are `None` if omitted.
+
+The type of the parameter will be `T?`, where `T` is the type of the parameter.
+
+```cwscript
+fn foo(a: Int, b?: Int) -> Int {
+  return a + b
+}
+```
+
+### Optional with Default Value
+
+You can also specify a default value for a parameter, which will be used if the parameter is omitted.
+This is done by adding an `=` after the parameter name, followed by the default value.
+
+Default values must come AFTER all required parameters in the function signature.
+
+```cwscript
+fn foo(a: Int, b: Int = 0) -> Int {
+  return a + b
+}
+```
+
+## Generic Functions
+
+A *generic function* is a function that
+
+You can make a function generic by adding type parameters enclosed in `<` and `>` after the function name.
+
+```cwscript
+fn foo<T, B>(a: T) -> T {
+  return a
+}
+```

@@ -3,7 +3,7 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 // const darkCodeTheme = require("prism-react-renderer/themes/
 
-const hideSpecialHeadings = require("./src/remark/hideSpecialHeadings");
+const removeSpecialHeadings = require("./src/remark/remove-special-headings");
 
 /** @type {import('prism-react-renderer').PrismTheme} */
 const darkCodeTheme = {
@@ -125,7 +125,7 @@ const config = async () => ({
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
 
-          remarkPlugins: [hideSpecialHeadings],
+          remarkPlugins: [removeSpecialHeadings],
         },
         blog: {
           showReadingTime: true,

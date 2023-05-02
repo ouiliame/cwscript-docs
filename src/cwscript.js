@@ -39,12 +39,19 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
   ],
   "fn-defn": {
     pattern:
-      /\b(?:fn|exec|query|reply\.on_success|reply\.on_error|reply)\b\s*(?:#?[a-zA-Z_][a-zA-Z0-9_]*!?\s*)(?:\()/,
+      /\b(?:fn|exec|query|reply\.on_success|reply\.on_error|reply)\b\s*(?:#?[a-zA-Z_][a-zA-Z0-9_]*!?\s*)(?:<\s*[A-Z][a-zA-Z0-9_]*(?:\s*,\s*[A-Z][a-zA-Z0-9_]*)*\s*>)?(?:\()/,
     lookbehind: true,
     greedy: true,
     inside: {
+      generics: {
+        pattern: /<\s*[A-Z][a-zA-Z0-9_]*(?:\s*,\s*[A-Z][a-zA-Z0-9_]*)*\s*>/,
+        inside: {
+          punctuation: /[<>]/,
+          "class-name": /[A-Z][a-zA-Z0-9_]*/,
+        },
+      },
       keyword: /\b(fn|exec|query|reply\.on_success|reply\.on_error|reply)\b\s*/,
-      function: /#?[a-zA-Z_][a-zA-Z0-9_]*!?/,
+      function: /#?[a-zA-Z_][a-zA-Z0-9_]*!?\s*/,
       punctuation: /[()]/,
     },
   },

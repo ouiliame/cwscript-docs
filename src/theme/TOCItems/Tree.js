@@ -5,7 +5,7 @@ function renderHeading(heading, linkClassName) {
   if (heading.value.startsWith(":sig:")) {
     return (
       <a
-        href={`#sig-${heading.value.slice(5)}`}
+        href={`#_${heading.value.slice(5)}`}
         className={linkClassName ?? undefined}
         // Developer provided the HTML, so assume it's safe.
         // eslint-disable-next-line react/no-danger

@@ -5,8 +5,8 @@ export const FnSignature = ({ obj, name, params, returnType }) => {
   if (obj) {
     return (
       <>
-        <div id={`sig-` + name} className={styles.signature}>
-          <a className={"hash-link"} href={`#sig-` + name}></a>
+        <div id={`_` + name} className={styles.signature}>
+          <a className={"hash-link"} href={`#_` + name}></a>
           <span className={styles.obj}>{obj}.</span>
           <span className={styles.name}>{name}</span>
           <span className={styles.params}>({params.join(", ")})</span>
@@ -19,8 +19,8 @@ export const FnSignature = ({ obj, name, params, returnType }) => {
   } else {
     return (
       <>
-        <div id={`sig-` + name} className={styles.signature}>
-          <a className={"hash-link"} href={`#sig-` + name}></a>
+        <div id={`_` + name} className={styles.signature}>
+          <a className={"hash-link"} href={`#_` + name}></a>
           <span className={styles.name}>{name}</span>
           <span className={styles.params}>({params.join(", ")})</span>
           {/*<span className={styles.returnType}>*/}
