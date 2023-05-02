@@ -3,6 +3,8 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 // const darkCodeTheme = require("prism-react-renderer/themes/
 
+const hideSpecialHeadings = require("./src/remark/hideSpecialHeadings");
+
 /** @type {import('prism-react-renderer').PrismTheme} */
 const darkCodeTheme = {
   plain: {
@@ -81,7 +83,6 @@ const darkCodeTheme = {
     },
   ],
 };
-const shikiHighlightCws = require("./src/remark/shiki-highlight-cws.js");
 
 // /** @type {import('@docusaurus/types').Config} */
 const config = async () => ({
@@ -123,6 +124,8 @@ const config = async () => ({
           // Remove this to remove the "edit this page" links.
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+
+          remarkPlugins: [hideSpecialHeadings],
         },
         blog: {
           showReadingTime: true,
@@ -141,6 +144,10 @@ const config = async () => ({
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
+
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {

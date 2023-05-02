@@ -1,0 +1,54 @@
+import {FnSignature} from '../../../src/cwsdoc/FnSignature'
+
+# Address
+
+## Syntax
+
+
+
+## Methods
+
+### :sig:to_bytes
+<FnSignature obj="Address" name={"to_bytes"} params={['a']} returnType="Address"/>
+
+Sure! Here's some example documentation for the `Address.to_bytes` function:
+
+
+The `to_bytes()` method returns the binary representation of an address as a bytes object.
+
+#### Syntax
+
+```python
+address.to_bytes()
+```
+
+#### Parameters
+
+This method does not take any parameters.
+
+#### Return Value
+
+This method returns a bytes object representing the binary representation of the address.
+
+#### Example
+
+```python
+from address import Address
+
+addr = Address('0x7E13FC6A8D6a43bEba54E68f1a8f4aFaBcb4D739')
+addr_bytes = addr.to_bytes()
+print(addr_bytes.hex())
+# Output: '7e13fc6a8d6a43beba54e68f1a8f4afabcb4d739'
+```
+
+In this example, we create an `Address` object representing an Ethereum address and then call the `to_bytes()` method to obtain its binary representation as a bytes object. We then print the hexadecimal representation of the bytes object to the console.
+
+#### Notes
+
+The `to_bytes()` method can be used to obtain the binary representation of an address that can be passed to other functions or contracts that require a binary representation of the address.
+
+### :sig:to_bytes2
+<FnSignature name={"to_bytes2"} params={['a']} returnType="Address"/>
+
+
+export const toc = [];

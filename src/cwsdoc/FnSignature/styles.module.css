@@ -1,0 +1,30 @@
+.signature {
+    display: flex;
+    align-items: center;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 22px;
+    line-height: 20px;
+    margin-bottom: 1.75rem;
+    margin-top: 1.75rem;
+    scroll-margin-top: calc(3.75rem + 1rem);
+}
+
+[data-theme='dark'] .obj {
+    color: #999999;
+}
+
+[data-theme='light'] .obj {
+    color: #4f4f4f;
+}
+
+.name {
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.params {
+    margin-right: 4px;
+}
+
+.returnType {
+}
