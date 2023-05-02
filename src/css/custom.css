@@ -90,6 +90,7 @@
     --ifm-color-primary-lightest: #ff944d;
     --ifm-font-family-base: 'Proxima-Nova';
     --ifm-font-family-monospace: 'Berkeley-Mono';
+    -webkit-font-smoothing: antialiased !important;
     --ifm-font-size-base: 110%;
 
     --ifm-code-font-size: 90%;

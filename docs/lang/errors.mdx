@@ -1,0 +1,55 @@
+# Errors
+
+In CWScript, **errors** are a special type of value used to indicate that something went wrong.
+
+## Defining Errors
+
+You can define custom errors using the `error` keyword.
+
+Errors may contain fields, which are specified using the **functional syntax** for structs.
+
+```cwscript
+error SomethingWentWrong(message: String)
+error Unauthorized(user: Address, action: String)
+```
+
+## The `fail!` Keyword
+
+The `fail!` keyword is used to terminate execution of the current function or message handler.
+
+You can only use `fail!` inside a fallible function or a contract entrypoint.
+
+```cwscript
+fn do_some_stuff!() {
+  fail! SomethingWentWrong("Oops!")
+}
+```
+
+## Try / Catch / Else
+
+You can use the `try` keyword to catch errors thrown by a function or message handler.
+
+```cwscript
+try {
+  do_some_stuff!()
+} catch e: SomethingWentWrong {
+  // Handle the error
+} else {
+  // Handles all other errors
+}
+```
+
+### The `??` Operator
+
+The `??` operator is a shorthand for `try` / `else`.
+
+```cwscript
+let a = do_some_stuff!() ?? 5
+
+// Equivalent to:
+let a = try {
+  do_some_stuff!()
+} else {
+  5
+}
+```

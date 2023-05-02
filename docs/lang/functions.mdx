@@ -59,12 +59,17 @@ fn foo(a: Int, b: Int = 0) -> Int {
 
 ## Generic Functions
 
-A *generic function* is a function that
+A *generic function* is a function that can operate on a variety of data types without the need to define a separate function for each type.
 
 You can make a function generic by adding type parameters enclosed in `<` and `>` after the function name.
 
 ```cwscript
-fn foo<T, B>(a: T) -> T {
+fn id<T>(a: T) -> T {
   return a
+}
+
+// fallible generic function
+fn parse!<T>(s: String) -> T {
+  // can fail with an error
 }
 ```
