@@ -5,7 +5,7 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
   },
   constant: [
     {
-      pattern: /(\$env|\$info|\$response|\$state|\$data|\$error|\$)/,
+      pattern: /(\$env|\$info|\$response|\$state|\$data|\$events|\$error|\$)/,
       greedy: true,
     },
     {

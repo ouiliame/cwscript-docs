@@ -1,0 +1,84 @@
+# Projects
+
+CWScript **projects** organize related source files, tests, deployment scripts, dependencies and tool settings, etc.
+into a workspace unit. It is recommended to create a separate project for each application or library.
+
+## Creating a Project
+
+You can create a new project using the `cwsc new` command:
+
+```bash
+$ cwsc new <project-name>
+```
+
+## Directory Structure
+
+```
+<project-name>/
+├── .gitignore
+├── .cwspackages/
+├── README.md
+├── cwsproject.toml
+├── cwsproject-lock.toml
+├── src/
+│   ├── Contract1.cws
+│   └── Contract2.cws
+├── tests/
+│   ├── unit_test.test.cws
+│   ├── integration/
+│   │   └── integration_test.test.cws
+│   └── testdata/
+│       └── textfixtures.json
+├── gen/
+│   ├── rust/
+│   │   └── project-name/
+│   │       ├── Cargo.toml
+│   │       ├── contract1/
+│   │       │   └── Cargo.toml
+│   │       └── contract2/
+│   │           └── Cargo.toml
+│   ├── wasm/
+│   │   ├── contract1.wasm
+│   │   └── contract2.wasm
+│   └── cwdoc/
+│       ├── md/
+│       │   ├── Contract1.md
+│       │   └── Contract2.md
+│       └── html/
+│           └── ...generated HTML site
+└── scripts/
+    └── deploy.ts
+```
+
+## `cwsproject.toml`
+
+The `cwsproject.toml` file is the main manifest file for a project. It contains information about the project
+as well as various configuration options for the CWScript compiler and other tools.
+
+```toml
+[project]
+name = "project-name"
+version = "0.1.0"
+authors = ["Your Name"]
+description = "A short description of the project"
+license = "MIT"
+
+[dependencies]
+# ...
+
+[build]
+# ...
+
+[tool.cwsc]
+version = "nightly"
+plugins = ["cwsc-plugin-foo", "cwsc-plugin-bar"]
+warnings = "all"
+debug = true
+codegen = "rust"
+
+[tool.cwslint]
+# ...
+
+[tool.cwsdoc]
+# ...
+```
