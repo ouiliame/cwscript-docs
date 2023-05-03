@@ -1,6 +1,8 @@
 # Errors
 
-In CWScript, **errors** are a special type of value used to indicate that something went wrong.
+In CWScript, **errors** are a special type of value used to indicate that something went wrong. 
+
+Unlike Rust, CWScript does not use the `Result` monad to capture errors to be processed later, and instead requires you to deal with errors when they occur, or fail immediately.
 
 ## Defining Errors
 

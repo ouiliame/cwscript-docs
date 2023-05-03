@@ -19,7 +19,8 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
   ],
   function: [
     {
-      pattern: /\b(call|debug|delegate_exec|exec|fail|instantiate|query)\b!/,
+      pattern:
+        /\b(assert|call|debug|delegate_exec|exec|fail|instantiate|query)\b!/,
       greedy: true,
       alias: "special-call",
     },
@@ -58,7 +59,7 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
   keyword: [
     {
       pattern:
-        /\b(and|as|catch|const|contract|else|enum|error|event|extends|for|from|if|implements|import|in|interface|is|let|mut|not|or|return|state|struct|try|type)\b/,
+        /\b(?:instantiate|defer|fn|exec|query|reply\.on_success|reply\.on_error|reply|and|as|catch|const|contract|else|enum|error|event|extends|for|from|if|implements|import|in|interface|is|let|mut|not|or|return|state|struct|try|type)(?!!)\b/,
     },
   ],
   property: [

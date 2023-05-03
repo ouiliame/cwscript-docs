@@ -1,0 +1,104 @@
+# Context Variables
+
+The following variables are available in different contexts of a contract's execution.
+
+| Variable    | Description       | `instantiate` | `exec` | `query`       | `reply.on_success` | `reply.on_error` |
+|-------------|-------------------|---------------|--------|---------------|--------------------|------------------|
+| `$`         | "This Contract"   | ✅             | ✅      | ✅             | ✅                  | ✅                |
+| `$state`    | Contract State    | ✅             | ✅      | ☑️ (readonly) | ✅                  | ✅                |
+| `$env`      | Environment       | ✅             | ✅      | ✅             | ✅                  | ✅                |
+| `$info`     | Message Info      | ✅             | ✅      | ❌             | ❌                  | ❌                |
+| `$response` | Contract Response | ✅             | ✅      | ❌             | ✅                  | ✅                |
+| `$data`     | SubMsg Data       | ❌             | ❌      | ❌             | ✅                  | ❌                |
+| `$events`   | SubMsg Events     | ❌             | ❌      | ❌             | ✅                  | ❌                |
+| `$error`    | SubMsg Error      | ❌             | ❌      | ❌             | ❌                  | ✅                |
+
+## `$` - This Contract
+
+The `$` variable is a reference to the contract instance itself.
+
+```cwscript
+const $: Instance<...>
+```
+
+The most common use case for `$` is to make queries or call contract `exec` messages against the current contract instance.
+
+```cwscript
+query! $.balance(...)
+exec! $.another_exec_msg(...)
+```
+
+## `$state` - Contract State
+
+The `$state` variable is a reference to the contract state, so its structure will vary depending on the contract.
+It is available in all special contexts, but read-only in the `query` context.
+
+```cwscript
+const $state: ContractState<...>
+```
+
+## `$env` - Environment
+
+The `$env` variable is a reference to the current contract's environment, which contains information about the current block, transaction, and contract.
+
+```cwscript
+const $env: struct Env {
+  block: struct BlockInfo {
+    height: Uint64,
+    time: Uint64,
+    chain_id: String
+  },
+  transaction: struct TransactionInfo {
+    index: Uint32,
+  }?,
+  contract: struct ContractInfo {
+    address: Address
+  },
+}
+```
+
+## `$info` - Message Info
+
+The `$info` variable provides information about the transactional message used to invoke a contract state-mutating entrypoint.
+It is only available in the `instantiate` and `exec` contexts.
+
+```cwscript
+const $info: struct MessageInfo {
+  sender: Address,
+  funds: Coins,
+}
+```
+
+## `$response` - Contract Response
+
+The `$response` variable is a mutable reference to the `Response` of the current contract invocation.
+It is only available in the `instantiate`, `exec`, `reply.on_success`, and `reply.on_error` contexts.
+
+```cwscript
+let $response: struct Response {
+  messages: ExecMsg[],
+  events: Event[],
+  data: Bytes?,
+}
+```
+
+## `$data` - SubMsg Data
+The `$data` variable is a reference to the `data` field of submessage's `Response` during `reply.on_success` context.
+
+```cwscript
+const $data: Bytes?
+```
+
+## `$events` - SubMsg Events
+The `$events` variable is a reference to the `events` field of submessage's `Response` during `reply.on_success` context.
+
+```cwscript
+const $events: Event[]
+```
+
+## `$error` - SubMsg Error
+The `$error` variable is a reference to the `error` field of submessage's `Response` during `reply.on_error` context.
+
+```cwscript
+const $error: Error
+```

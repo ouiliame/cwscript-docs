@@ -1,0 +1,13 @@
+# Query
+
+## Querying a Contract
+
+```cwscript
+let balance = query! CW20(contract_addr).#balance(user_addr)
+```
+
+## Querying a Module
+
+```cwscript
+let balance = query! Bank.#balance(user_addr)
+```

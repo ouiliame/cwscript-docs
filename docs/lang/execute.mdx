@@ -1,0 +1,123 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Execute
+
+## Defining `exec` Messages
+
+Inside a contract definition, you can define `exec` messages using the `exec` keyword. Note that the `exec` message's name must be prefixed with `#`.
+
+```cwscript
+contract MyContract {
+
+  state {
+    count: Int = 0
+  }
+
+  exec #increment(num: Int = 1) {
+    $state.count += num
+  }
+}
+```
+
+## Building `exec` Messages
+
+You can build an `exec` message without calling it by using the `exec` keyword.
+This is useful for building a message to be called later, or storing it as data.
+
+### Without Contract Address
+
+```cwscript
+let msg = exec MyContract.#increment(5)
+assert! msg is exec MyContract.#increment
+
+// to call it later
+exec! Wasm.#execute(contract_addr, msg)
+```
+
+### With Contract Address
+
+```cwscript
+let msg = exec MyContract(contract_addr).#increment(5)
+assert! msg is exec Wasm.#execute
+
+// to call it later
+exec! msg
+```
+
+## The `exec!` Keyword
+
+You can call `exec` messages on other contracts using the `exec!` keyword.
+Note that `exec!` keyword can only be used inside `instantiate`, `exec`, `reply.on_success`, and `reply.on_error` contexts.
+
+#### SYNTAX
+
+```cwscript
+exec! <message> [{
+  <options>
+}]
+```
+
+#### EXAMPLE
+
+```cwscript
+contract ExecExample {
+  exec #distribute(amount: Uint) {
+    exec! CW20(token_addr).#transfer(user1_addr, amount / 2)
+    exec! CW20(token_addr).#transfer(user2_addr, amount / 2)
+  }
+}
+```
+
+:::tip
+
+You can assign a variable to be a contract reference to avoid repetition:
+
+```cwscript
+contract ExecExample {
+  exec #distribute(amount: Uint) {
+    let token = CW20(token_addr)
+    exec! token.#transfer(user1_addr, amount / 2)
+    exec! token.#transfer(user2_addr, amount / 2)
+  }
+}
+```
+:::
+
+
+### Options for `exec!`
+
+You can specify options `exec!` messages after the message inside curly braces.
+Note that options specified at this level will override any existing options in the message.
+
+If a contract instance object was used to create the message and the `contract_addr` option is specified in an `exec!`, the contract address of the message will be overridden.
+
+- `contract_addr`: The contract address to send the message to.
+- `funds`: The funds to send with the message.
+
+```cwscript
+contract SendFunds {
+  exec #send_funds(amount: Uint) {
+    exec! CW20.#transfer(user1_addr, amount / 2) {
+      contract_addr: token_addr, // contract address to send the message to
+      funds: Coins("10000uluna") // funds to send with the message
+    }
+  }
+}
+```
+
+### Deferred `exec!`
+
+After using the `exec!` keyword, you cannot perform further updates to `$state`. In order to work around this, use the `defer` keyword before `exec!`, which delays the execution until the end by appending the message to a queue in the order it was called.
+
+```cwscript
+contract DeferExecExample {
+  exec #distribute(amount: Uint) {
+    defer exec! CW20(token_addr).#transfer(user1_addr, amount / 2)
+    $state.balance -= amount / 2
+    defer exec! CW20(token_addr).#transfer(user2_addr, amount / 2)
+    $state.balance -= amount / 2
+  }
+}
+```
+

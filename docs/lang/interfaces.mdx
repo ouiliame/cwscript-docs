@@ -1,14 +1,10 @@
 # Interfaces
 
 An **interface** is a set of required entrypoint messages that a contract must implement.
-This allows a contract to be used in any context that expects a contract with a specific set of entrypoints.
 
-For instance, a dApp can work with different CW20 token contracts without needing to know the specifics of each contract, as long as each contract implements the CW20 interface.
+Interfaces allows contracts to be used in any context that expects a contract with a specific set of entrypoints. For instance, a dApp designed to work with different types of token contracts can require tokens to implement the CW20 interface in order to be considered compatible.
 
-Contracts can implement multiple interfaces, as long as they implement all required entrypoints for each interface.
-However, if two interfaces have conflicting signatures for the same entrypoint name, then a contract cannot implement both interfaces.
-
-## Example
+Contracts can implement multiple interfaces, as long as they implement all required entrypoints for each interface. However, if two interfaces have conflicting signatures for the same entrypoint name, then a contract cannot implement both interfaces.
 
 ```cwscript
 interface CW20 {

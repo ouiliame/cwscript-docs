@@ -100,7 +100,7 @@ execDefn:
 
 execDecl: EXEC (tup=MUL)? HASH name=ident params=fnParams;
 
-// Query Defn
+// query.mdx Defn
 queryDefn: QUERY HASH name=ident params=fnParams (ARROW retTy=typeExpr)? body=block;
 queryDecl: QUERY HASH name=ident params=fnParams (ARROW retTy=typeExpr)?;
 

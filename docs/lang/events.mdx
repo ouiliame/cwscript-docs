@@ -1,6 +1,34 @@
 # Events
 
-In CWScript, **events** are a special type of value that can be emitted by contracts to indicate that something of interest
-has happened.
+An **event** is a special type of structured data that can be emitted by contracts to indicate that something of interest has occured. 
+
+Since contract entrypoints such as `#instantiate` or `exec#` messages cannot return values normally like functions, they emit events instead, which are stored on-chain and can be picked up by other processes such as event listeners, block explorers, and blockchain indexers.
+
+CWScript provides tools which make it easy to parse structured data from emitted events logged from the blockchain. 
 
 ## Defining Events
+
+Custom event types can be defined using the `event` keyword. You can also specify named fields for relevant data you want your event to contain, using the functional syntax for structs.
+
+```cwscript
+event Transfer(sender: Address, recipient: Address, amount: Uint)
+```
+
+## The `emit` Keyword
+
+Events can be emitted using the `emit` keyword inside state-mutating contract entrypoints:
+
+- instantiate
+- exec
+- migrate
+
+```cwscript
+contract EmitExample {
+	event SomethingHappened(what: String)
+
+	exec #do_something() {
+		// ... logic
+		emit SomethingHappened("do_something was called!")
+	}
+}
+```

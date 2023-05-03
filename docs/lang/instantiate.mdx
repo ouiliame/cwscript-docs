@@ -1,0 +1,65 @@
+# Instantiate
+
+## Defining `#instantiate`
+
+Inside a contract definition, you can define the  `#instantiate` message like this:
+
+```cwscript
+contract MyContract {
+	#instantiate() {
+		// do some stuff
+	}
+}
+```
+
+## Building `instantiate` Messages
+
+You can build an `instantiate` message without calling it by using the `instantiate` keyword.
+This is useful for building a message to be called later, or storing it as data.
+
+```cwscript
+let instantiate_msg = instantiate #MyContract()
+
+// instantiate later
+instantiate! instantiate_msg {
+  code_id: 9
+}
+```
+
+
+## The `instantiate!` Keyword
+
+You can use the `instantiate!` keyword to instantiate a new contract. The contract code must be stored at a known "code ID" prior to instantiating, which is provided in arguments after the specifying the new contract's instantiate message.
+
+:::caution
+Some chains also require you to specify additional arguments such as `label` or `admin` information. Be sure to check the specifications of your target platform chain before deploying your contract.
+:::
+
+
+```cwscript
+instantiate! #CW20() {
+	code_id: 20,
+	// label: "cw20-token",
+	// admin: $env.contract.address
+}
+```
+
+### Deferred `instantiate!`
+
+After using the `instantiate!` keyword, you cannot perform further updates to `$state`. In order to work around this, use the `defer` keyword before `instantiate!`, which delays instantiate until the end of the message's execution by appending the instantiate message to a queue.
+
+
+```cwscript
+contract DeferInstantaiteExample {
+	exec #crate_contracts(n: Int) {
+		for i in 0..n {
+			defer instantiate! #CW20() {
+				code_id: 20,
+				label: "token-{i}",
+				admin: $env.contract.address
+			}
+			$state.new_contracts += 1
+		}
+	}
+}
+```

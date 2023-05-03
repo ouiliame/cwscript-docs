@@ -5,12 +5,11 @@
 A contract definition comprises the following sections:
 
 - **state** - variables that are persisted as the contract's state
-- **#instantiate** - logic that defines how the contract is initialized upon instantiation
-- **exec #...** - state-mutating functions that can be called to interact with the contract in a transaction
-- **query #...** - read-only functions that can be called to query the state of the contract
+- **instantiate** - logic that defines how the contract is initialized upon instantiation
+- **exec** - state-mutating functions that can be called to interact with the contract in a transaction
+- **query** - read-only functions that can be called to query the state of the contract
 
-Contracts are also namespaces, so they can contain static definitions for custom types and functions which can be referenced in other code.
-It is common to define custom **errors** and **events** inside a contract.
+Contracts are also namespaces, so they can contain static definitions for custom types and functions which can be referenced in other code. Usually, contracts will include definitions for custom **errors** and **events** used by the contract.
 
 ## Syntax
 
