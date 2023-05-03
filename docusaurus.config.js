@@ -145,7 +145,8 @@ const config = async () => ({
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: {
-        respectPrefersColorScheme: true,
+        defaultMode: "dark",
+        disableSwitch: true,
       },
 
       // Replace with your project's social card
