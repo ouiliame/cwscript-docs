@@ -160,12 +160,28 @@ const config = async () => ({
         items: [
           {
             type: "docSidebar",
-            sidebarId: "langSidebar",
+            sidebarId: "docsSidebar",
             position: "left",
             label: "Docs",
           },
-          { to: "/blog", label: "Blog", position: "left" },
-          { to: "/playground", label: "Playground", position: "left" },
+          {
+            type: "docSidebar",
+            sidebarId: "langSidebar",
+            position: "left",
+            label: "Language Reference",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "examplesSidebar",
+            position: "left",
+            label: "Code Examples",
+          },
+          // { to: "/blog", label: "Blog", position: "left" },
+          {
+            type: "html",
+            position: "right",
+            value: `<a class="button button--primary" href="/playground" >Playground</a>`,
+          },
           {
             href: "https://github.com/terran-one/cwscript",
             label: "GitHub",
