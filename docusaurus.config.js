@@ -195,6 +195,11 @@ const config = async () => ({
           {
             type: "html",
             position: "right",
+            value: `<a class="button button--secondary" href="https://cwsdeck.vercel.app" >Tour</a>`,
+          },
+          {
+            type: "html",
+            position: "right",
             value: `<a class="button button--primary" href="/playground" >Playground</a>`,
           },
           {
