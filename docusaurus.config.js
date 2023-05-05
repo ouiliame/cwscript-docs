@@ -8,14 +8,14 @@ const removeSpecialHeadings = require("./src/remark/remove-special-headings");
 /** @type {import('prism-react-renderer').PrismTheme} */
 const darkCodeTheme = {
   plain: {
-    color: "#f8f8f2",
-    backgroundColor: "#242424",
+    color: "#f4f4f4",
+    backgroundColor: "#262626",
   },
   styles: [
     {
       types: ["comment"],
       style: {
-        color: "#606060",
+        color: "#727272",
         fontStyle: "italic",
       },
     },
@@ -23,6 +23,13 @@ const darkCodeTheme = {
       types: ["string", "attr-value"],
       style: {
         color: "#aaff33",
+      },
+    },
+    {
+      types: ["escape"],
+      style: {
+        color: "#08a229",
+        fontWeight: "bold",
       },
     },
     {
@@ -46,19 +53,26 @@ const darkCodeTheme = {
     {
       types: ["keyword"],
       style: {
-        color: "#ff8833",
+        color: "#ff7428",
       },
     },
     {
       types: ["operator"],
       style: {
-        color: "#ffbb22",
+        color: "#e9aa16",
+      },
+    },
+    {
+      types: ["fail"],
+      style: {
+        color: "#ff4128",
+        fontWeight: "bold",
       },
     },
     {
       types: ["special-call"],
       style: {
-        color: "#ff5044",
+        color: "#ff6128",
         fontWeight: "bold",
       },
     },
@@ -72,13 +86,14 @@ const darkCodeTheme = {
     {
       types: ["builtin", "class-name"],
       style: {
-        color: "#ffef88",
+        color: "#ffec76",
       },
     },
     {
       types: ["function"],
       style: {
         color: "#bf88ef",
+        fontStyle: "italic",
       },
     },
   ],

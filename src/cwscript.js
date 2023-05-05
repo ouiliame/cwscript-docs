@@ -17,31 +17,23 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
       alias: "builtin",
     },
   ],
+  fail: {
+    pattern: /\b(?:fail|debug)\b!/,
+  },
+  "special-call": {
+    pattern:
+      /\b(?:assert|delegate_exec|exec|instantiate|query)\b!|\bemit\b|\bdefer\b/,
+    greedy: true,
+  },
   function: [
-    {
-      pattern:
-        /\b(assert|call|debug|delegate_exec|exec|fail|instantiate|query)\b!/,
-      greedy: true,
-      alias: "special-call",
-    },
-    {
-      pattern: /\bemit\b/,
-      alias: "keyword",
-    },
-    {
-      pattern: /(?:#?)(?:\b[A-Z][a-zA-Z0-9_]*!?)/,
-      alias: "class-name",
-    },
     {
       pattern: /(?:#?)(?:\b[a-zA-Z_][a-zA-Z0-9_]*!?)(?=\()/,
       greedy: true,
-      lookbehind: true,
     },
   ],
   "fn-defn": {
     pattern:
       /\b(?:fn|exec|query|reply\.on_success|reply\.on_error|reply)\b\s*(?:#?[a-zA-Z_][a-zA-Z0-9_]*!?\s*)(?:<\s*[A-Z][a-zA-Z0-9_]*(?:\s*,\s*[A-Z][a-zA-Z0-9_]*)*\s*>)?(?:\()/,
-    lookbehind: true,
     greedy: true,
     inside: {
       generics: {
@@ -56,12 +48,11 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
       punctuation: /[()]/,
     },
   },
-  keyword: [
-    {
-      pattern:
-        /\b(?:instantiate|defer|fn|exec|query|reply\.on_success|reply\.on_error|reply|and|as|catch|const|contract|else|enum|error|event|extends|for|from|if|implements|import|in|interface|is|let|mut|not|or|return|state|struct|try|type)(?!!)\b/,
-    },
-  ],
+  keyword: {
+    pattern:
+      /\b(?:instantiate|fn|exec|query|reply\.on_success|reply\.on_error|reply|and|as|catch|const|else|enum|error|event|extends|for|from|if|implements|import|in|interface|is|let|mut|not|or|return|state|struct|try|type)(?!!)\b/,
+  },
+
   property: [
     {
       pattern: /@[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)*/,
@@ -70,15 +61,41 @@ Prism.languages.cwscript = Prism.languages.extend("clike", {
   ],
   punctuation: /[{}[\];(),.:]/,
   operator: /[?]{1,2}|[:]{1,2}|==|!=|[-+*\/%|^&=[\]<>]/,
+
+  "class-name": [
+    {
+      pattern: /\bcontract\b(?=\s+[A-Z][a-zA-Z_0-9]*)/,
+      inside: { keyword: /\bcontract\b/ },
+    },
+    {
+      pattern: /(?:#?)(?:\b[A-Z][a-zA-Z0-9_]*!?)/,
+    },
+  ],
+
   string: [
     {
       pattern: /'[^']*'/,
-      alias: "string",
     },
     {
-      pattern: /"[^"]*"/,
-      alias: "string",
+      pattern: /"(?:\\.|\{[^{}]*}|(?!\{)[^\\"])*"/,
+      inside: {
+        escape: /\\(?:[abfnrtv\\"'{])/,
+        interpolation: {
+          pattern: /\{[^{}]*}/,
+          inside: {
+            punctuation: /^\{|}$/,
+            expression: {
+              pattern: /[\s\S]+/,
+              inside: null, // see below
+            },
+          },
+        },
+      },
     },
   ],
   number: /\b\d+(?:\.\d*)?(?:[eE][+-]?\d+)?\b/,
 });
+
+Prism.languages.cwscript["string"][1].inside["interpolation"].inside[
+  "expression"
+].inside = Prism.languages.cwscript;

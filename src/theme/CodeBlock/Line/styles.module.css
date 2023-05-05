@@ -26,20 +26,24 @@ the background in custom CSS file due bug https://github.com/facebook/docusaurus
   width: 1%;
   position: sticky;
   left: 0;
-  padding: 0 var(--ifm-pre-padding);
+  padding-left: 1.67rem;
+  padding-right: 0.55rem;
   background: var(--ifm-pre-background);
-  overflow-wrap: normal;
+  border-right: 0.125rem solid rgb(255, 255, 255, 0.075);
 }
+
 
 .codeLineNumber::before {
   content: counter(line-count);
-  opacity: 0.4;
+  opacity: 0.27;
 }
+
 
 :global(.theme-code-block-highlighted-line) .codeLineNumber::before {
   opacity: 0.8;
 }
 
 .codeLineContent {
+  padding-left: 0.45em;
   padding-right: var(--ifm-pre-padding);
 }

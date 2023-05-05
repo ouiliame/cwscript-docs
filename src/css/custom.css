@@ -179,9 +179,15 @@
     --ifm-color-primary-lightest: #ff944d;
     --ifm-font-family-base: 'Proxima Nova Rg';
     --ifm-font-family-monospace: 'Berkeley Mono';
+    --ifm-code-border-radius: 8px;
+
     -webkit-font-smoothing: antialiased !important;
     --ifm-font-size-base: 110%;
 
-    --ifm-code-font-size: 90%;
+    --ifm-code-font-size: 93%;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+pre code > * {
+  line-height: 1.67em !important;
 }
