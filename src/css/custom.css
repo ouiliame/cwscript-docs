@@ -168,6 +168,10 @@
     font-display: swap;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
     --ifm-color-primary: #ff6600;
