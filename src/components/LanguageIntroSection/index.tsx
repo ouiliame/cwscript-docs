@@ -38,7 +38,7 @@ contract SimpleCounter {
     owner: Address 
   }
 
-  instantiate(count: Int) {
+  #instantiate(count: Int) {
     $state.count = count
     $state.owner = $info.sender 
   }
