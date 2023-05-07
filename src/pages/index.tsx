@@ -9,6 +9,7 @@ import styles from "./index.module.css";
 import CosmWasmFeatureSection from "../components/CosmWasmFeatureSection";
 import LanguageIntroSection from "../components/LanguageIntroSection";
 import ToolingSection from "../components/ToolingSection";
+import CTASection from "../components/CTASection";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -44,6 +45,7 @@ export default function Home(): JSX.Element {
         <LanguageIntroSection />
         <CosmWasmFeatureSection />
         <ToolingSection />
+        <CTASection />
       </main>
     </Layout>
   );

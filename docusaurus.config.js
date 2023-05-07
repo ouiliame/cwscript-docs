@@ -283,7 +283,7 @@ const config = async () => ({
           },
         ],
 
-        copyright: `Copyright © ${new Date().getFullYear()} Terran One LLC.`,
+        copyright: `Copyright © ${new Date().getFullYear()} TERRAN.ONE LLC.`,
       },
 
       plugins: [
@@ -303,7 +303,7 @@ const config = async () => ({
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["cwscript"],
+        additionalLanguages: ["cwscript", "antlr4"],
       },
     }),
 });

@@ -10,10 +10,12 @@ export default function prismIncludeLanguages(PrismObject) {
   // You can mutate PrismObject: registering plugins, deleting languages... As
   // long as you don't re-assign it
   globalThis.Prism = PrismObject;
-  // additionalLanguages.forEach((lang) => {
-  //   // eslint-disable-next-line global-require, import/no-dynamic-require
-  //   require(`prismjs/components/prism-${lang}`);
-  // });
+  prism.additionalLanguages.forEach((lang) => {
+    if (lang !== "cwscript") {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      require(`prismjs/components/prism-${lang}`);
+    }
+  });
 
   require("../cwscript");
   delete globalThis.Prism;

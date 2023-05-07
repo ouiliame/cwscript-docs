@@ -4,7 +4,11 @@ sidebar_position: 1
 
 # Grammar
 
-```antlrv4
+The following code listing is the [ANTLR4](https://antlr.org) grammar for the CWScript language, which is used to generate the initial parser in the CWScript compiler.
+Note that the parser described by this grammar intentionally parses a relaxed superset of the actual CWScript language; this is to extract as much information
+to report diagnostics. The compiler performs additional validations to ensure that the program is valid.
+
+```antlr4
 grammar CWScript;
 
 // Files contain 1 or more topLevelStatement
