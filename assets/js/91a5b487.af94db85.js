@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3812],{5453:e=>{e.exports=JSON.parse('{"title":"Commands","slug":"/category/commands","permalink":"/docs/category/commands","navigation":{"previous":{"title":"Introduction","permalink":"/docs/cwsc/"},"next":{"title":"build","permalink":"/docs/cwsc/commands/build"}}}')}}]);
